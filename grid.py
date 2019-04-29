@@ -1,4 +1,5 @@
 import random
+
 class Board():
 
     def __init__(self,grid_size=4,fill_char="+"):
@@ -8,12 +9,18 @@ class Board():
     # Prints the grid in its current state
     def printGrid(self):
         # Iterate through rows
-        for x in range(len(self.grid)):
+        for row in range(len(self.grid)):
             # Iterate through columns in current row
-            for y in range(len(self.grid[x])):
+            for column in range(len(self.grid[row])):
                 # Print current character with space after
-                print(self.grid[x][y], end=" ")
+                print(self.grid[row][column], end=" ")
 
             # Move print to next line for next row
             print()
+
+    # Pass in a list of objects to spawn
+    def addItems(self,list):
+        for item in list:
+            print(item.x,item.y,item.char)
+            self.grid[item.y][item.x] = item.char
 
