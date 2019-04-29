@@ -2,10 +2,11 @@ import random
 
 class Board():
     grid = [[]]
-    def __init__(self,grid_size=4,fill_char="+"):
+    def __init__(self,grid_size=4,fill_char="+",eggs=2):
         # Initializes grid of grid_size * grid_size with the fill_char
         self.grid_size = grid_size
         self.fill_char = fill_char
+        self.eggs = eggs
         for row in range(grid_size):
             for col in range(grid_size):
                 self.grid[row].append(fill_char)

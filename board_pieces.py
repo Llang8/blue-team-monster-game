@@ -10,7 +10,6 @@ class Player(Character):
         self.char = char
 
     def moveCharacter(self,direction,board):
-        print(direction)
         board.grid[self.y][self.x] = board.fill_char
         if direction == 0:
             if self.y > 0:
@@ -30,8 +29,16 @@ class Player(Character):
     # If on monster tile kill player
     # If on egg tile add one to egg count
     # If on door check if all eggs are collected and change level if needed
+    # TODO: CHECK FUNCTIONALITY
     def checkCollision(self):
-        pass
+       """  for item in list:
+            if item.x == self.x and item.y == self.y
+                if type(item) == Monster
+                    pass #End game
+                elif type(item) == eggs
+                   self.eggs += 1
+                elif type (item) == Door and self.eggs == board.eggs
+                   pass # Onto next level """
 
 class Monster(Character):
     def __init__(self,x,y,char="@"):

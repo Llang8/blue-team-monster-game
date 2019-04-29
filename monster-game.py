@@ -1,6 +1,8 @@
 from grid import Board
 from board_pieces import *
 import keyboard
+import random
+import math
 
 # import only system from os 
 from os import system, name 
@@ -49,16 +51,21 @@ def clear():
     else: 
         _ = system('clear')
 
+def randomPosition():
+    global board
+    return math.floor(random.random() * board.grid_size)
+
 # Main code loop
 def main():
     global board
     global player 
     board = Board(10,"+")
-    player = Player(5,5)
-    egg = Egg(8,6)
-    monster = Monster(4,3)
+    player = Player(randomPosition(),randomPosition())
+    egg = Egg(randomPosition(),randomPosition())
+    monster = Monster(randomPosition(),randomPosition())
     board.addItems([player,egg,monster])
     board.printGrid()
+    randomPosition()
     while True:
         clear()
         board.printGrid()
