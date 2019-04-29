@@ -1,10 +1,15 @@
 import random
 
 class Board():
-
+    grid = [[]]
     def __init__(self,grid_size=4,fill_char="+"):
         # Initializes grid of grid_size * grid_size with the fill_char
-        self.grid = [[fill_char]*grid_size]*grid_size
+        self.grid_size = grid_size
+        self.fill_char = fill_char
+        for row in range(grid_size):
+            for col in range(grid_size):
+                self.grid[row].append(fill_char)
+            self.grid.append([])
     
     # Prints the grid in its current state
     def printGrid(self):
@@ -19,8 +24,6 @@ class Board():
             print()
 
     # Pass in a list of objects to spawn
-    def addItems(self,list):
-        for item in list:
-            print(item.x,item.y,item.char)
+    def addItems(self,items):
+        for item in items:
             self.grid[item.y][item.x] = item.char
-
