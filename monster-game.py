@@ -121,9 +121,9 @@ def main():
         monster.move(board)
         # Readd items to board (Don't add egg if already collected, will throw error)
         if egg.x >= 0 and egg.y >= 0:
-            board.addItems([player,egg,monster,door])
+            board.addItems([egg,door,player,monster])
         else:
-            board.addItems([player,monster,door])
+            board.addItems([door,player,monster])
         sleep(.3)
 # This sets up a hook that listens for 
 keyboard.on_press(check_input)
