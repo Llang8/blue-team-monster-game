@@ -58,18 +58,34 @@ def randomPosition():
 # Main code loop
 def main():
     global board
-    global player 
-    board = Board(10,"+")
-    player = Player(randomPosition(),randomPosition())
+    global player
+    board = Board(4,"+")
+    player = Player(0,math.floor(board.grid_size/2))
     egg = Egg(randomPosition(),randomPosition())
     monster = Monster(randomPosition(),randomPosition())
-    board.addItems([player,egg,monster])
+    door = Door(randomPosition(),randomPosition())
+    board.addItems([player,egg,monster,door])
     board.printGrid()
     randomPosition()
-    while True:
-        clear()
-        board.printGrid()
-        sleep(.25)
+    for i in range(1,4):
+        while True:
+            clear()
+            board.printGrid()
+            player.printEggs()
+            if player.checkCollision(egg):
+                player.eggs+=1
+                # Once egg has been collected move off screen
+                egg.x = -1
+                egg.y = -1
+            if player.checkCollision(monster):
+                print("You lose!")
+                break
+            if player.checkCollision(door):
+                if player.eggs == board.eggs:
+                    print("You passed the level! Moving to the next...")
+                    sleep(2)
+                    break
+            sleep(.3) 
 
 # This sets up a hook that listens for 
 keyboard.on_press(check_input)

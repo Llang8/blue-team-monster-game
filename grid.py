@@ -2,7 +2,7 @@ import random
 
 class Board():
     grid = [[]]
-    def __init__(self,grid_size=4,fill_char="+",eggs=2):
+    def __init__(self,grid_size=4,fill_char="+",eggs=1):
         # Initializes grid of grid_size * grid_size with the fill_char
         self.grid_size = grid_size
         self.fill_char = fill_char

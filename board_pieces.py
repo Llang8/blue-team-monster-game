@@ -25,20 +25,12 @@ class Player(Character):
                 self.x+=1
         board.grid[self.y][self.x] = self.char
         
+    def printEggs(self):
+        print("Eggs collected: {}".format(self.eggs))
 
-    # If on monster tile kill player
-    # If on egg tile add one to egg count
-    # If on door check if all eggs are collected and change level if needed
-    # TODO: CHECK FUNCTIONALITY
-    def checkCollision(self):
-       """  for item in list:
-            if item.x == self.x and item.y == self.y
-                if type(item) == Monster
-                    pass #End game
-                elif type(item) == eggs
-                   self.eggs += 1
-                elif type (item) == Door and self.eggs == board.eggs
-                   pass # Onto next level """
+    # Returns true if player is in same tile as passed item
+    def checkCollision(self,item):
+        return item.x == self.x and item.y == self.y
 
 class Monster(Character):
     def __init__(self,x,y,char="@"):
