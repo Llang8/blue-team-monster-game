@@ -72,12 +72,22 @@ def main():
     board = Board(4,"+")
     # Initialize Player object at position x=0 y=board size / 2
     player = Player(0,math.floor(board.grid_size/2))
-    # Initialize Egg object at random position
-    egg = Egg(randomPosition(),randomPosition())
-    # Initialize Monster at random position
-    monster = Monster(randomPosition(),randomPosition())
     # Initialize Door in last column middle row
     door = Door(board.grid_size - 1, math.floor(board.grid_size/2))
+    # Initialize Egg object at random position
+    x = randomPosition()
+    y = randomPosition()
+    # Make sure position is not the same as the player or door
+    while (x == player.x and y == player.y) or (x == door.x and y == door.y):
+        x = randomPosition()
+        y = randomPosition() 
+    egg = Egg(x,y)
+    # Initialize Monster at random position not equal to door, player, or egg positions
+    while (x == player.x and y == player.y) or (x == egg.x and y == egg.y) or (x == door.x and y == door.y):
+        x = randomPosition()
+        y = randomPosition()
+    monster = Monster(x,y)
+
     # Add items to board
     # TODO: Make this work in case of multiple eggs
     board.addItems([player,egg,monster,door])
@@ -108,6 +118,12 @@ def main():
                 sleep(2)
                 break
         # Make code wait here to prevent refreshing too fast
+        monster.move(board)
+        # Readd items to board (Don't add egg if already collected, will throw error)
+        if egg.x >= 0 and egg.y >= 0:
+            board.addItems([player,egg,monster,door])
+        else:
+            board.addItems([player,monster,door])
         sleep(.3)
 # This sets up a hook that listens for 
 keyboard.on_press(check_input)

@@ -1,3 +1,5 @@
+import random
+import math
 class Character():
     def __init__(self,x,y):
         self.x = x
@@ -36,6 +38,24 @@ class Monster(Character):
     def __init__(self,x,y,char="@"):
         super().__init__(x,y)
         self.char = char
+
+    # Move monster randomly but keep on screen
+    def move(self, board):
+        board.grid[self.y][self.x] = board.fill_char
+        direction = math.floor(random.random() * 4)
+        if direction == 0:
+            if self.y > 0:
+                self.y-=1
+        elif direction == 3:
+            if self.x > 0:
+                self.x-=1
+        elif direction == 2:
+            if self.y < board.grid_size - 1:
+                self.y+=1
+        elif direction == 1:
+            if self.x < board.grid_size - 1:
+                self.x+=1
+        board.grid[self.y][self.x] = self.char
 
 class Egg():
     def __init__(self,x,y,char="0"):
